@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des absences</title>
+  <!-- Add Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 20px;
+    }
+
+    h2 {
+      color: #45a049;
+    }
+
+    table {
+      width: 80%;
+      margin: auto;
+      margin-top: 20px;
+    }
+
+    th, td {
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Liste des absences</h2>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+    <tr>
+      <th>Id</th>
+      <th>Date</th>
+      <th>Justifie</th>
+      <th>Etudiant</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="absence : ${absences}">
+      <td th:text="${absence.id_absence}" />
+      <td th:utext="${#dates.format(absence.date, 'dd-MM-yyyy')}" />
+      <td th:text="${absence.justified}" />
+      <td th:text="${absence.etudiant.fullName}" />
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier Etudiant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        td label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/Etudiant/update/{id}(id=${etudiant.id_etudiant})}" method="post" th:object="${etudiant}">
+    <table border="1">
+        <input type="hidden" th:field="*{id_etudiant}" />
+
+        <tr>
+            <td><label>Nom Complete</label></td>
+            <td><input type="text" th:field="*{fullName}" /></td>
+        </tr>
+        <tr>
+            <td><label th:text="Age" /></td>
+            <td><input type="number" th:field="*{age}" /></td>
+        </tr>
+
+        <tr>
+            <td><label>Nom du Pere</label></td>
+            <td><input type="text" th:field="*{parent.fatherfullname}" /></td>
+        </tr>
+        <tr>
+            <td><label>Nom du Mere</label></td>
+            <td><input type="text" th:field="*{parent.motherfullname}" /></td>
+        </tr>
+        <tr>
+            <td><label>Telephone du Pere</label></td>
+            <td><input type="tel" th:field="*{parent.tel_father}" /></td>
+        </tr>
+        <tr>
+            <td><label>Telephone du Mere</label></td>
+            <td><input type="tel" th:field="*{parent.tel_mother}" /></td>
+        </tr>
+        <tr>
+            <td><label th:text="Adresse" /></td>
+            <td><input type="text" th:field="*{parent.address}" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><input type="submit" value="Update" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

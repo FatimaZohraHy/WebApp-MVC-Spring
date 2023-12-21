@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des etudiants</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    a {
+      text-decoration: none;
+      color: #3498db;
+    }
+
+    a:hover {
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Nom</th>
+    <th>Age</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="etudiant: ${Etudiants}">
+    <td th:text="${etudiant.id_etudiant}" />
+    <td th:text="${etudiant.fullName}" />
+    <td th:text="${etudiant.age}" />
+    <td><a th:href="@{/Etudiant/edit/{id}(id=${etudiant.id_etudiant})}">edit</a></td>
+    <td><a th:href="@{/Etudiant/delete/{id}(id=${etudiant.id_etudiant})}">delete</a></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

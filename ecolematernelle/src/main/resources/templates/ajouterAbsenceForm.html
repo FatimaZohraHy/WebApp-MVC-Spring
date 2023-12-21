@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter Absence</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 20px;
+    }
+
+    h2 {
+      color: #007bff;
+    }
+
+    form {
+      width: 50%;
+      margin: auto;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Ajouter Absence</h2>
+  <form th:action="@{/Absence/sauvegarder}" method="post" th:object="${absence}">
+    <div class="form-group">
+      <label for="student">Etudiant:</label>
+      <select class="form-control" id="student" name="student" th:field="*{etudiant}" required>
+        <!-- Iterate through the list of students and populate the dropdown -->
+        <option th:each="etudiant : ${etudiants}" th:value="${etudiant.id_etudiant}" th:text="${etudiant.fullName}"></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Date:</label>
+      <input type="date" class="form-control"  th:field="*{date}" required />
+    </div>
+
+    <div class="form-group">
+      <label >Justifie</label>
+      <select class="form-control" th:field="*{justified}" required>
+        <option value="true">Oui</option>
+        <option value="false">Non</option>
+      </select>
+    </div>
+
+    <!-- Add more fields as needed -->
+
+    <button type="submit" class="btn btn-primary">Ajouter Absence</button>
+  </form>
+
+</div>
+<!-- Add Bootstrap JS and jQuery scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
